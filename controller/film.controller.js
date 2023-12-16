@@ -1,7 +1,7 @@
 import pool from "../db.js";
-import path from 'path';
-const __dirname = path.resolve();
-import mv from "mv";
+// import path from 'path';
+// const __dirname = path.resolve();
+// import mv from "mv";
 
 class FilmController {
     async createFilm(req, res) {
@@ -21,7 +21,6 @@ class FilmController {
                 return res.status(500).json({ message: 'Error saving file' });
             }
 
-            // Дополнительные операции с сохраненным файлом, если требуется
             const newFilm = pool.query(`INSERT INTO films (title, genres, country, image) VALUES ($1, $2, $3, $4) RETURNING *`, [title, genres, country, filename])
 
             // Возвращаем информацию о загруженном файле в ответе

@@ -45,12 +45,22 @@ function App() {
 
             if (response.ok) {
                 console.log('Данные успешно отправлены на сервер');
+
+                // очистка полей формы после успешной отправки формы
+                setPostInfo({
+                    title: '',
+                    genres: '',
+                    country: '',
+                });
+                setImage(null);
+                setImageName('');
             } else {
                 console.error('Ошибка при отправке данных на сервер');
             }
         } catch (error) {
             console.error('Ошибка при отправке данных:', error);
         }
+        
         // для отправки ТОЛЬКО ТЕКСТОВЫХ данных можно использовать
         // следующую конструкцию
 
@@ -103,6 +113,7 @@ function App() {
                         name="title"
                         value={postInfo.title}
                         onChange={handleChange}
+                        required
                     />
                     <label>
                         Жанр(ы):
@@ -112,6 +123,7 @@ function App() {
                         name="genres"
                         value={postInfo.genres}
                         onChange={handleChange}
+                        required
                     />
                     <label>
                         Страна:
@@ -121,6 +133,7 @@ function App() {
                         name="country"
                         value={postInfo.country}
                         onChange={handleChange}
+                        required
                     />
                     <label>
                         Изображение:
@@ -129,6 +142,7 @@ function App() {
                         type="file"
                         name="image"
                         onChange={handleImageChange}
+                        required
                     />
                     <button type="submit">Отправить</button>
                 </form>
